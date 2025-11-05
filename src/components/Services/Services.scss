@@ -1,0 +1,634 @@
+// Import des variables
+@use "../../styles/variables" as *;
+
+// Services Section
+.services {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, $white-soft 0%, $white 50%, $white-soft 100%);
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 4rem 1.5rem;
+  }
+}
+
+// Background Decorations
+.services-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+
+  .bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+
+    &.orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, $rose-primary 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+    }
+
+    &.orb-2 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, $rose-light 0%, transparent 70%);
+      bottom: -300px;
+      left: -300px;
+    }
+  }
+}
+
+.services-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// Header
+.services-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: $white;
+  border: 2px solid $rose-light;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(255, 102, 178, 0.15);
+
+  .badge-icon {
+    font-size: 1.2rem;
+  }
+
+  span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $rose-dark;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+.services-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: $black;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+
+  .highlight {
+    background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 50%, $rose-primary 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 100%);
+      border-radius: 2px;
+    }
+  }
+}
+
+.services-subtitle {
+  font-size: 1.15rem;
+  color: $black-medium;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+// Services Grid
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+// Service Card
+.service-card {
+  position: relative;
+  background: $white;
+  border-radius: 25px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow: 0 20px 60px rgba(255, 102, 178, 0.25);
+  }
+}
+
+// Image Wrapper
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .service-card:hover & img {
+    transform: scale(1.1);
+  }
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+// Icon Badge
+.icon-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background: $white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: $rose-primary;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// Price Tag - REMOVED (pas de prix affichés)
+
+// Corner Decoration
+.corner-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--service-color, $rose-primary);
+  opacity: 0.8;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+// Shine Effect
+.shine-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 3;
+  transition: left 0.8s ease;
+}
+
+// Card Content
+.card-content {
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.service-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: $black;
+  margin-bottom: 0.8rem;
+  line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
+}
+
+.service-description {
+  font-size: 1rem;
+  color: $black-medium;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
+}
+
+// Service Features
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: $black-medium;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 100%);
+      color: $white;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Service Button - REMOVED (pas de bouton "en savoir plus")
+
+// Card Glow Effect
+.card-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 100%);
+  border-radius: 26px;
+  z-index: -1;
+  opacity: 0.6;
+  filter: blur(15px);
+}
+
+// CTA Section
+.services-cta {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, $rose-ultra-light 0%, $white 100%);
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 102, 178, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+
+  h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: $black;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: $black-medium;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 45px;
+  background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 100%);
+  color: $white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  box-shadow: 0 8px 30px rgba(255, 102, 178, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+
+  .arrow {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+}
+
+// Modal
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 9998;
+  cursor: pointer;
+}
+
+.service-modal {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  background: $white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+
+  @media (max-width: 968px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 640px) {
+    bottom: 10px;
+    right: 10px;
+    max-width: calc(100vw - 20px);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: $white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $rose-primary;
+    transform: rotate(90deg);
+
+    svg {
+      stroke: $white;
+    }
+  }
+
+  svg {
+    stroke: $black-soft;
+    transition: stroke 0.3s ease;
+  }
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.modal-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.modal-icon-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  background: $white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: $rose-primary;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.modal-info {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: $black;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-description {
+    font-size: 0.95rem;
+    color: $black-medium;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.modal-features {
+  margin-bottom: 1.5rem;
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $black;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      font-size: 1rem;
+      color: $black-medium;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .check-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 100%);
+        color: $white;
+        border-radius: 50%;
+        font-size: 0.8rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+.modal-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 100%);
+  color: $white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(255, 102, 178, 0.4);
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 14px;
+  }
+}
+
+// Animations
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

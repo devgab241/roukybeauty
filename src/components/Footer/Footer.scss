@@ -1,0 +1,322 @@
+// ===================================================================
+// 1. VARIABLES & MIXINS
+// ===================================================================
+
+// Variables - Thème Rose, Noir et Blanc
+$rose-primary: #ff69b4;       // Rose Vif (Boutons, accents)
+$rose-light: #ffb6d9;         // Rose Clair
+$rose-dark: #d4568a;          // Rose Foncé
+$black: #000000;              // Noir Pur
+$black-soft: #1a1a1a;         // Noir Doux (Fond principal)
+$white: #ffffff;              // Blanc
+$gray-light: #e5e5e5;         // Gris Clair
+
+// Mixins
+@mixin gradient-rose {
+  background: linear-gradient(135deg, $rose-primary 0%, $rose-dark 100%);
+}
+
+// ===================================================================
+// 2. FOOTER GLOBAL
+// ===================================================================
+
+.footer {
+  position: relative;
+  // Fond noir simple et élégant
+  background: $black-soft; 
+  color: $white;
+  margin-top: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif; // Assurez-vous d'importer cette police
+}
+
+.footer-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem 0;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1.5rem 0;
+  }
+}
+
+// Grille principale (4 colonnes)
+.footer-content {
+  display: grid;
+  // 4 colonnes : (À Propos: 1.5x) (Liens: 1x) (Horaires: 1x) (Contact: 1x)
+  grid-template-columns: 1.5fr 1fr 1fr 1fr; 
+  gap: 3rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); // Séparateur subtil
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr); // 2 colonnes sur tablette
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr; // 1 colonne sur mobile
+    gap: 2rem;
+    text-align: center;
+  }
+}
+
+// ===================================================================
+// 3. STYLES DES COLONNES
+// ===================================================================
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  .column-title {
+    font-size: 1.3rem; 
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+
+    &::after { // Ligne rose sous le titre
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: $rose-primary;
+      border-radius: 2px;
+
+      @media (max-width: 640px) {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
+
+// A. Colonne À Propos
+.about-column {
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+
+    @media (max-width: 640px) {
+      justify-content: center;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: $white;
+      margin: 0;
+    }
+  }
+
+  .footer-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+  }
+}
+
+// B. Liens Sociaux (Appliqué dans about-column)
+.social-links {
+  display: flex;
+  gap: 0.8rem;
+
+  @media (max-width: 640px) {
+    justify-content: center;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 50%;
+    color: $white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: var(--social-color, $rose-primary);
+      border-color: var(--social-color, $rose-primary);
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// C. Colonne Liens Rapides
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 1rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+
+      @media (max-width: 640px) {
+        justify-content: center;
+      }
+
+      .link-arrow {
+        font-size: 1rem;
+        color: $rose-primary;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        color: $rose-primary;
+        .link-arrow {
+            transform: translateX(5px);
+        }
+      }
+    }
+  }
+}
+
+// D. Colonnes Horaires et Contact (réutilisent .contact-info)
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    align-items: flex-start; // Aligne l'icône et le texte en haut
+    gap: 12px;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.4;
+
+    @media (max-width: 640px) {
+      justify-content: center;
+    }
+    
+    // Aligner le texte des horaires pour la lisibilité sur mobile
+    & > span {
+        text-align: left;
+    }
+
+    .contact-icon {
+      color: $rose-primary;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      // Ajout de marge pour aligner visuellement l'icône avec le texte
+      margin-top: 2px; 
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $rose-primary;
+      }
+    }
+  }
+  
+  .social-link {
+    // Style du bouton "Voir la carte"
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background: $rose-dark !important;
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.6);
+    }
+  }
+}
+
+// ===================================================================
+// 4. FOOTER BOTTOM
+// ===================================================================
+
+.footer-bottom {
+  padding: 1.5rem 0;
+
+  .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .copyright {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      margin: 0;
+      @media (max-width: 768px) {
+        order: 3;
+      }
+    }
+    
+    .made-with {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      
+      @media (max-width: 768px) {
+        order: 2;
+        margin-bottom: 0.5rem;
+      }
+
+      a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $rose-primary;
+        }
+      }
+
+      .separator {
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+}
+
+// Animations (Pour le cœur "Fait avec...")
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(1.1); }
+  20%, 40% { transform: scale(1); }
+}
